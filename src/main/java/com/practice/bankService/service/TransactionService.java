@@ -61,6 +61,25 @@ public class TransactionService
        toBankAccountEntity.setActualBalance(toBankAccountEntity.);
     }
 
+    public UtilityPaymentResponse utilPayment(UtilityPaymentRequest utilityPaymentRequest)
+    {
+        String transactionId = UUID.randomUUID().toString();
+        BankAccount fromBankAccount= accountService.readBankAccount(utilityPaymentRequest.getAccount());
+        validateBalance(fromBankAccount,utilityPaymentRequest.getAmount());
+
+        UtilityAccount utilityAccount= accountService.readUtilityAccount(utilityPaymentRequest.getProviderId());
+
+        BankAccountEntity fromAccount = bankAccountRepository.findByNumber(fromBankAccount.getNumber()).get();
+
+
+        fromAccount.setActualBalance(fromAccount.getActualBalance().subtract(utilityPaymentRequest.getAmount()));
+        fromAccount.setAvailableBalance(fromAccount.getAvailableBalance().subtract(utilityPaymentRequest.getAmount()));
+        transactionRepository.save(TransactionEntity.builder().transactionType(TransactionType.UTILITY_PAYMENT).account(fromAccount).transactionId(transactionId).referenceNumber(utilityPaymentRequest.getReferenceNumber()).amount(utilityPaymentRequest.getAmount().negate()).build());
+        return UtilityPaymentResponse.builder().message("Utility payment Sucessfully completed").transactionId(transactionId).build();
+    }
+
+
+
 
 
 
