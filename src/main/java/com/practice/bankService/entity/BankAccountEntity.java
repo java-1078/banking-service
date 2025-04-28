@@ -21,7 +21,8 @@ public class BankAccountEntity {
     @Enumerated(EnumType.STRING)
     private AccountStatus status;
     private BigDecimal availableBalance;
-    private BigDecimal actualBalance;//?
-    @OneToMany(mappedBy = "use",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private BigDecimal actualBalance;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 }
