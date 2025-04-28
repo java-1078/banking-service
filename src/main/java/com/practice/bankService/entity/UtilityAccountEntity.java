@@ -13,6 +13,6 @@ public class UtilityAccountEntity {
 
     private String number;
 
-    private String provideName;
+    private String providerName;
 
 }
