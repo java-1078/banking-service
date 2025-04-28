@@ -82,7 +82,7 @@ public class TransactionService
         fromAccount.setActualBalance(fromAccount.getActualBalance().subtract(utilityPaymentRequest.getAmount()));
         fromAccount.setAvailableBalance(fromAccount.getAvailableBalance().subtract(utilityPaymentRequest.getAmount()));
         transactionRepository.save(TransactionEntity.builder().transactionType(TransactionType.UTILITY_PAYMENT).account(fromAccount).transactionId(transactionId).referenceNumber(utilityPaymentRequest.getReferenceNumber()).amount(utilityPaymentRequest.getAmount().negate()).build());
-        return UtilityPaymentResponse.builder().message("Utility payment Sucessfully completed").transactionId(transactionId).build();
+        return UtilityPaymentResponse.builder().message("Utility payment Successfully completed").transactionId(transactionId).build();
     }
 
 
