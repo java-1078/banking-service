@@ -58,7 +58,14 @@ public class TransactionService
        transactionRepository.save(TransactionEntity.builder().transactionType(TransactionType.FUND_Transfer).referenceNumber(toBankAccountEntity.getNumber()).transactionId(transactionId).account(fromBankAccountEntity).account(fromBankAccountEntity).amount(amount.negate()).build());
 
        toBankAccountEntity.setAvailableBalance(toBankAccountEntity.getAvailableBalance().add(amount));
-       toBankAccountEntity.setActualBalance(toBankAccountEntity.);
+       toBankAccountEntity.setActualBalance(toBankAccountEntity.getActualBalance().add(amount));
+       bankAccountRepository.save(toBankAccountEntity);
+        transactionRepository.save(TransactionEntity.builder().transactionType(TransactionType.FUND_Transfer)
+                .referenceNumber(toBankAccountEntity.getNumber())
+                .transactionId(transactionId)
+                .account(toBankAccountEntity).amount(amount).build());
+
+        return transactionId;
     }
 
     public UtilityPaymentResponse utilPayment(UtilityPaymentRequest utilityPaymentRequest)
