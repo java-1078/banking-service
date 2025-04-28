@@ -20,9 +20,9 @@ public class AccountService
 
     private final BankAccountRepository bankAccountRepository;
     private final UtilityAccountRepository utilityAccountRepository;
-    public BankAccount readBankAccount(String accountNumber)
-    {
-        BankAccountEntity entity= bankAccountRepository.findByNumber(accountNumber).get();
+    public BankAccount readBankAccount(String accountNumber) {
+        BankAccountEntity entity = bankAccountRepository.findByNumber(accountNumber)
+                .orElseThrow(() -> new RuntimeException("Bank account not found with number: " + accountNumber));
         return bankAccountMapper.convertToDto(entity);
     }
     public UtilityAccount readUtilityAccount(String provider)
