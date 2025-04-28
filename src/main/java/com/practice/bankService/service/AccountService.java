@@ -31,10 +31,10 @@ public class AccountService
                 .orElseThrow(() -> new EntityNotFoundException("Utility Provider not found with name: " + provider));
         return utilityAccountMapper.convertToDto(utilityAccountEntity);
     }
-    public UtilityAccount readUtilityAccount(Long id)
-    {
-        return utilityAccountMapper.convertToDto(utilityAccountRepository.findById(id).get());
-
+    public UtilityAccount readUtilityAccount(Long id) {
+        UtilityAccountEntity utilityAccountEntity = utilityAccountRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("UtilityAccount not found with id: " + id));
+        return utilityAccountMapper.convertToDto(utilityAccountEntity);
     }
 
 
