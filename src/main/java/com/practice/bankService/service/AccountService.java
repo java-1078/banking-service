@@ -27,7 +27,8 @@ public class AccountService
     }
     public UtilityAccount readUtilityAccount(String provider)
     {
-        UtilityAccountEntity utilityAccountEntity= utilityAccountRepository.findByProvideName(provider).get();
+        UtilityAccountEntity utilityAccountEntity= utilityAccountRepository.findByProviderName(provider)
+                .orElseThrow(() -> new EntityNotFoundException("Utility Provider not found with name: " + provider));
         return utilityAccountMapper.convertToDto(utilityAccountEntity);
     }
     public UtilityAccount readUtilityAccount(Long id)
