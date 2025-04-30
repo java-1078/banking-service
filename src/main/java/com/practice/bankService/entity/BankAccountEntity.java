@@ -1,8 +1,7 @@
 package com.practice.BankService.entity;
 
-import com.practice.BankService.model.AccountStatus;
-import com.practice.BankService.model.AccountType;
-import jakarta.persistence.*;
+import com.practice.bankService.model.AccountStatus;
+import com.practice.bankService.model.AccountType;
 import lombok.Data;
 
 import java.math.BigDecimal;
