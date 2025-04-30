@@ -4,6 +4,7 @@ import com.practice.bankService.model.AccountStatus;
 import com.practice.bankService.model.AccountType;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
