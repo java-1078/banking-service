@@ -1,4 +1,4 @@
-package com.practice.BankService.entity;
+package com.practice.bankService.entity;
 
 import com.practice.bankService.model.AccountStatus;
 import com.practice.bankService.model.AccountType;
